@@ -2,13 +2,15 @@
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
-  container: {
+  body: {
     flex: 1,
     justifyContent: 'center',
-    paddingVertical: 10,
+  },
+  container: {
+    // paddingTop: 10,
     paddingHorizontal: 10,
   },
-  text: { fontSize: 26, fontWeight: 'bold' },
+  text: { fontSize: 26, fontWeight: 'bold', textAlign: 'center' },
   tabBar: { paddingTop: 14, paddingBottom: 4 },
   favoriteEllipse: {
     marginTop: 6,
@@ -22,7 +24,7 @@ export const styles = StyleSheet.create({
     marginTop: 12,
   },
   loading: {
-    justifyContent: 'center',
+    // justifyContent: 'center',
   }
 });
 

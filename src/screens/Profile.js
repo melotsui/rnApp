@@ -6,6 +6,13 @@ import { RadioButton } from 'react-native-paper';
 import Toast from 'react-native-toast-message';
 import { Dropdown, MultiSelect } from 'react-native-element-dropdown';
 
+const X_MASTER_KEY = '$2b$10$WOrhaoirxK3RSvoNpfLoJOOeaYExd22RNk/Di0qcEIpYAMvfG8zrW';
+const X_ACCESS_KEY = '$2b$10$.p4UyoDNJyBIjTFWOjvCA.yQfGh.qCCRaCasFoMOnaMjX6Pg7TZFi';
+const headers = new Headers({
+  'X-Master-Key': X_MASTER_KEY,
+  'X-Access-Key': X_ACCESS_KEY
+});
+
 export function ProfileScreen({ navigation }) {
 
   const [refreshing, setRefreshing] = React.useState(false);
@@ -27,10 +34,7 @@ export function ProfileScreen({ navigation }) {
         'https://api.jsonbin.io/v3/b/63e452d5c0e7653a0572e673',
         {
           method: 'GET',
-          headers: new Headers({
-            'X-Master-Key': '$2b$10$WOrhaoirxK3RSvoNpfLoJOOeaYExd22RNk/Di0qcEIpYAMvfG8zrW',
-            'X-Access-Key': '$2b$10$.p4UyoDNJyBIjTFWOjvCA.yQfGh.qCCRaCasFoMOnaMjX6Pg7TZFi'
-          }),
+          headers,
           // body: '{"test" : true}'
         }
       );
@@ -98,14 +102,15 @@ export function ProfileScreen({ navigation }) {
         </Text> */}
       {
         isLoading ? (
-          <View style={screenStyles.container}>
+          <View style={[screenStyles.body]}>
             <ActivityIndicator size="large" style={screenStyles.loading} />
           </View>
         ) :
-          <ScrollView refreshControl={
-            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-          }>
-            <View style={screenStyles.container}>
+          <ScrollView
+            // bounces={true} alwaysBounceHorizontal={true} alwaysBounceVertical={true}
+            refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+          >
+            <View style={[screenStyles.container, screenStyles.body]}>
               <View style={css.br}></View>
               <Text style={css.label}>Name</Text>
               <TextInput style={css.input} value={name} onChangeText={name => setName(name)} />
